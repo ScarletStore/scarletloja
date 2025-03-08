@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scarlet Store - Login</title>
+  <!-- Importa particles.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    /* Reset e estilos básicos */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: Arial, sans-serif; background: #0c0c0c; color: #fff; overflow: hidden; }
+    
+    /* Container de partículas */
+    #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    
+    /* Container principal */
+    .container {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    
+    .login-wrapper {
+      width: 100%; max-width: 900px;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex; border-radius: 8px; overflow: hidden;
+    }
+    
+    /* Painel esquerdo */
+    .left-panel {
+      flex: 1; padding: 2rem; background: #1a1a1a;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .left-panel img.logo {
+      max-width: 150px; border-radius: 50%; margin-bottom: 2rem;
+    }
+    .left-panel h2 {
+      font-size: 2rem; margin-bottom: 1rem;
+      color: #ff4444; text-transform: uppercase;
+    }
+    
+    /* Painel direito */
+    .right-panel {
+      flex: 1; padding: 2rem; background: #161616;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .right-panel h3 {
+      font-size: 1.8rem; margin-bottom: 1rem;
+      color: #ff4444; text-transform: uppercase;
+    }
+    .right-panel form {
+      width: 100%; max-width: 300px;
+      margin: 0 auto; display: flex; flex-direction: column;
+    }
+    .right-panel form input {
+      padding: 0.8rem; margin-bottom: 1rem;
+      border: 1px solid #333; border-radius: 4px;
+      background: #222; color: #fff;
+    }
+    .right-panel form input:focus {
+      border-color: #ff4444; outline: none;
+    }
+    .right-panel form button {
+      padding: 0.8rem; border: none; border-radius: 4px;
+      background: #ff4444; color: #fff; font-size: 1rem;
+      cursor: pointer; transition: background 0.3s ease;
+    }
+    .right-panel form button:hover { background: #ff6666; }
+    
+    /* Botão de login com Google */
+    .google-btn {
+      display: flex; align-items: center; justify-content: center;
+      background: #fff; color: #000; padding: 0.8rem;
+      border: none; border-radius: 4px;
+      font-size: 1rem; cursor: pointer;
+      transition: background 0.3s ease; margin-top: 10px;
+    }
+    .google-btn img {
+      width: 20px; margin-right: 10px;
+    }
+    .google-btn:hover { background: #ddd; }
+    
+    .options {
+      margin-top: 1rem; font-size: 0.9rem;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .options a {
+      color: #ff4444; text-decoration: none; margin: 0.2rem 0;
+      transition: color 0.3s;
+    }
+    .options a:hover { color: #ff6666; }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .login-wrapper { flex-direction: column; }
+      .left-panel, .right-panel { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Container das partículas -->
+  <div id="particles-js"></div>
+
+  <!-- Container Principal de Login -->
+  <div class="container">
+    <div class="login-wrapper">
+      <!-- Painel Esquerdo: Informações e Logo -->
+      <div class="left-panel">
+        <img class="logo" src="https://i.pinimg.com/736x/cb/ac/b9/cbacb9ba4454da7ffabc5f38c0cc18a1.jpg?quality=lossless" alt="Scarlet Store Logo" />
+        <h2>Scarlet Store</h2>
+      </div>
+      <!-- Painel Direito: Formulário de Login -->
+      <div class="right-panel">
+        <h3>Login</h3>
+        <form>
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Digite seu email" required />
+          
+          <label for="password">Senha</label>
+          <input type="password" id="password" placeholder="Digite sua senha" required />
+          
+          <button type="submit">Entrar</button>
+          
+          <!-- Login com Google -->
+          <button type="button" class="google-btn" id="googleLogin">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google Logo">
+            Entrar com Google
+          </button>
+          
+          <div class="options">
+            <a href="#">Esqueceu sua senha?</a>
+            <span>OU</span>
+            <a href="#">Criar uma conta</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuração do particles.js -->
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ff4444" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000" },
+          "polygon": { "nb_sides": 5 }
+        },
+        "opacity": { "value": 0.5, "random": false },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ff4444",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Simulação de login com Google (substituir por OAuth real)
+    document.getElementById("googleLogin").addEventListener("click", function() {
+      alert("Login com Google ainda não implementado.");
+    });
+  </script>
+</body>
+</html>

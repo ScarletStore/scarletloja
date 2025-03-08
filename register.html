@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scarlet Store - Registrar</title>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    html, body {
+      height: 100%;
+      background: #0c0c0c;
+      color: #fff;
+      overflow: hidden;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .register-box {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 0 15px rgba(255, 78, 0, 0.5);
+    }
+    .register-box img {
+      width: 120px;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+    }
+    .register-box h2 {
+      margin-bottom: 1rem;
+    }
+    .register-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+    }
+    .register-box button {
+      width: 100%;
+      padding: 10px;
+      background: #ff4e00;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .register-box button:hover {
+      background: #e04300;
+    }
+    .login-link {
+      margin-top: 15px;
+      display: block;
+      color: #ff4e00;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="container">
+    <div class="register-box">
+      <!-- Utiliza a mesma imagem do login -->
+      <img src="https://i.pinimg.com/736x/cb/ac/b9/cbacb9ba4454da7ffabc5f38c0cc18a1.jpg?quality=lossless" alt="Scarlet Store Logo">
+      <h2>Registrar</h2>
+      <form id="registerForm">
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPassword" placeholder="Senha" required>
+        <button type="submit">Registrar</button>
+      </form>
+      <!-- Link para retornar à página de login -->
+      <a class="login-link" href="login.html">Já possui conta? Faça login</a>
+    </div>
+  </div>
+  <script>
+    // Configuração do Particles.js
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ff4e00" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3, "random": true },
+        "move": { "enable": true, "speed": 2 }
+      }
+    });
+
+    // Função para registrar e salvar os dados no LocalStorage
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+      const user = { email, password };
+      localStorage.setItem('scarletUser', JSON.stringify(user));
+      alert('Registro realizado com sucesso! Agora faça login.');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

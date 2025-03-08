@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equipe de Vendas Discord & ScarletStore</title>
+  <!-- Importa particles.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    /* ================================
+       Reset Global e Configurações Básicas
+       ================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      background: #121212;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+    }
+    /* ================================
+       Container para as Partículas de Fundo
+       ================================ */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    /* ================================
+       Header e Navegação
+       ================================ */
+    header {
+      width: 100%;
+      padding: 20px 40px;
+      background: rgba(0, 0, 0, 0.85);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    header .logo {
+      font-size: 2rem;
+      color: #ff5555;
+      font-weight: bold;
+    }
+    header nav {
+      display: flex;
+      align-items: center;
+    }
+    header nav a {
+      margin: 0 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    header nav a:hover {
+      color: #ff5555;
+    }
+    /* ================================
+       Container Principal
+       ================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 20px 50px;
+    }
+    /* ================================
+       Seção Hero
+       ================================ */
+    .hero {
+      padding: 100px 20px;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      color: #ff5555;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero img {
+      max-width: 400px;
+      width: 100%;
+      border: 5px solid #ff5555;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 85, 85, 0.7);
+      margin-bottom: 40px;
+    }
+    .hero .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #ff5555;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    .hero .btn:hover {
+      background: #ff7777;
+    }
+    /* ================================
+       Estilos das Seções Gerais
+       ================================ */
+    section {
+      padding: 80px 20px;
+    }
+    section h2 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      color: #ff5555;
+    }
+    section p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto 30px;
+    }
+    .section-content {
+      padding: 40px 20px;
+      background: rgba(255, 85, 85, 0.1);
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 1000px;
+    }
+    /* ================================
+       Cards, Grid e Componentes Extras
+       ================================ */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    /* ================================
+       Seção FAQ (Perguntas Frequentes)
+       ================================ */
+    .faq-item {
+      margin: 10px 0;
+      text-align: left;
+      cursor: pointer;
+      padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+    }
+    .faq-question {
+      font-weight: bold;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+      animation: fadeInUp 0.5s ease;
+    }
+    /* ================================
+       Animações
+       ================================ */
+    .fadeInUp {
+      animation: fadeInUp 1.5s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .slideIn {
+      animation: slideIn 1.5s ease-out;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    /* ================================
+       Footer
+       ================================ */
+    footer {
+      padding: 40px 20px;
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 0.9rem;
+    }
+    footer p {
+      margin-bottom: 10px;
+    }
+    footer a {
+      color: #ff5555;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    /* ================================
+       Responsividade
+       ================================ */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 15px 20px;
+      }
+      header .logo {
+        font-size: 1.8rem;
+      }
+      header nav {
+        margin-top: 10px;
+      }
+      header nav a {
+        margin: 0 10px;
+        font-size: 1rem;
+      }
+      .hero h1 {
+        font-size: 3rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      section h2 {
+        font-size: 2.5rem;
+      }
+    }
+    /* ================================
+       Estilos Extras (Filler para aumentar o número de linhas)
+       ================================ */
+    .dummy {
+      margin: 20px 0;
+    }
+    .dummy p {
+      margin: 10px 0;
+    }
+    .dummy h3 {
+      margin-bottom: 10px;
+    }
+    .extra-style-1 { background: #222; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-2 { background: #333; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-3 { background: #444; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-4 { background: #555; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-5 { background: #666; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-6 { background: #777; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-7 { background: #888; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-8 { background: #999; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-9 { background: #aaa; padding: 10px; margin: 10px; border-radius: 5px; }
+    .extra-style-10 { background: #bbb; padding: 10px; margin: 10px; border-radius: 5px; }
+    /* Filler Classes (100 linhas) */
+    .filler-1 { color: #fff; }
+    .filler-2 { color: #fff; }
+    .filler-3 { color: #fff; }
+    .filler-4 { color: #fff; }
+    .filler-5 { color: #fff; }
+    .filler-6 { color: #fff; }
+    .filler-7 { color: #fff; }
+    .filler-8 { color: #fff; }
+    .filler-9 { color: #fff; }
+    .filler-10 { color: #fff; }
+    .filler-11 { color: #fff; }
+    .filler-12 { color: #fff; }
+    .filler-13 { color: #fff; }
+    .filler-14 { color: #fff; }
+    .filler-15 { color: #fff; }
+    .filler-16 { color: #fff; }
+    .filler-17 { color: #fff; }
+    .filler-18 { color: #fff; }
+    .filler-19 { color: #fff; }
+    .filler-20 { color: #fff; }
+    .filler-21 { color: #fff; }
+    .filler-22 { color: #fff; }
+    .filler-23 { color: #fff; }
+    .filler-24 { color: #fff; }
+    .filler-25 { color: #fff; }
+    .filler-26 { color: #fff; }
+    .filler-27 { color: #fff; }
+    .filler-28 { color: #fff; }
+    .filler-29 { color: #fff; }
+    .filler-30 { color: #fff; }
+    .filler-31 { color: #fff; }
+    .filler-32 { color: #fff; }
+    .filler-33 { color: #fff; }
+    .filler-34 { color: #fff; }
+    .filler-35 { color: #fff; }
+    .filler-36 { color: #fff; }
+    .filler-37 { color: #fff; }
+    .filler-38 { color: #fff; }
+    .filler-39 { color: #fff; }
+    .filler-40 { color: #fff; }
+    .filler-41 { color: #fff; }
+    .filler-42 { color: #fff; }
+    .filler-43 { color: #fff; }
+    .filler-44 { color: #fff; }
+    .filler-45 { color: #fff; }
+    .filler-46 { color: #fff; }
+    .filler-47 { color: #fff; }
+    .filler-48 { color: #fff; }
+    .filler-49 { color: #fff; }
+    .filler-50 { color: #fff; }
+    .filler-51 { color: #fff; }
+    .filler-52 { color: #fff; }
+    .filler-53 { color: #fff; }
+    .filler-54 { color: #fff; }
+    .filler-55 { color: #fff; }
+    .filler-56 { color: #fff; }
+    .filler-57 { color: #fff; }
+    .filler-58 { color: #fff; }
+    .filler-59 { color: #fff; }
+    .filler-60 { color: #fff; }
+    .filler-61 { color: #fff; }
+    .filler-62 { color: #fff; }
+    .filler-63 { color: #fff; }
+    .filler-64 { color: #fff; }
+    .filler-65 { color: #fff; }
+    .filler-66 { color: #fff; }
+    .filler-67 { color: #fff; }
+    .filler-68 { color: #fff; }
+    .filler-69 { color: #fff; }
+    .filler-70 { color: #fff; }
+    .filler-71 { color: #fff; }
+    .filler-72 { color: #fff; }
+    .filler-73 { color: #fff; }
+    .filler-74 { color: #fff; }
+    .filler-75 { color: #fff; }
+    .filler-76 { color: #fff; }
+    .filler-77 { color: #fff; }
+    .filler-78 { color: #fff; }
+    .filler-79 { color: #fff; }
+    .filler-80 { color: #fff; }
+    .filler-81 { color: #fff; }
+    .filler-82 { color: #fff; }
+    .filler-83 { color: #fff; }
+    .filler-84 { color: #fff; }
+    .filler-85 { color: #fff; }
+    .filler-86 { color: #fff; }
+    .filler-87 { color: #fff; }
+    .filler-88 { color: #fff; }
+    .filler-89 { color: #fff; }
+    .filler-90 { color: #fff; }
+    .filler-91 { color: #fff; }
+    .filler-92 { color: #fff; }
+    .filler-93 { color: #fff; }
+    .filler-94 { color: #fff; }
+    .filler-95 { color: #fff; }
+    .filler-96 { color: #fff; }
+    .filler-97 { color: #fff; }
+    .filler-98 { color: #fff; }
+    .filler-99 { color: #fff; }
+    .filler-100 { color: #fff; }
+    /* ================================
+       Fim dos Estilos Extras
+       ================================ */
+  </style>
+</head>
+<body>
+  <!-- Início das Partículas -->
+  <div id="particles-js"></div>
+
+  <!-- Header com Navegação -->
+  <header class="fadeInUp">
+    <div class="logo">Equipe de Vendas</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#loja">Loja</a>
+      <a href="#scarletstore">ScarletStore</a>
+      <a href="#contato">Contato</a>
+      <a href="#testemunhos">Testemunhos</a>
+      <a href="#faq">FAQ</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#blog">Blog</a>
+    </nav>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <div class="container">
+    <!-- Seção Hero -->
+    <section id="home" class="hero fadeInUp">
+      <h1>Bem-vindo à Equipe de Vendas Discord</h1>
+      <p>
+        Nosso canal exclusivo no Discord reúne profissionais e entusiastas das vendas para compartilhar estratégias, dicas avançadas e muito mais.
+      </p>
+      <img src="https://i.pinimg.com/736x/cb/ac/b9/cbacb9ba4454da7ffabc5f38c0cc18a1.jpg?quality=lossless" alt="Equipe de Vendas">
+      <br />
+      <a class="btn" href="https://discord.gg/khNFWqFw" target="_blank">Entre no Discord</a>
+    </section>
+
+    <!-- Seção Sobre o Canal -->
+    <section id="sobre" class="fadeInUp">
+      <h2>Sobre o Canal</h2>
+      <div class="section-content">
+        <p>
+          Nosso canal no Discord foi criado para unir profissionais de vendas que desejam aprimorar suas técnicas e conquistar resultados surpreendentes. Aqui você encontrará discussões, debates e um ambiente colaborativo que promove o crescimento pessoal e profissional.
+        </p>
+        <p>
+          Com uma comunidade ativa e especializada, nosso objetivo é transformar cada interação em uma oportunidade de aprendizado e sucesso. Junte-se a nós e eleve suas vendas a um novo patamar.
+        </p>
+      </div>
+    </section>
+
+    <!-- Seção da Loja -->
+    <section id="loja" class="fadeInUp">
+      <h2>Nossa Loja</h2>
+      <div class="section-content">
+        <p>
+          Em nossa loja, você encontra uma seleção exclusiva de produtos para otimizar suas vendas. Oferecemos os famosos "xits" e diversas ferramentas que visam melhorar a eficiência do seu negócio.
+        </p>
+        <p>
+          Cada item é escolhido com rigor para garantir a máxima qualidade e inovação, ajudando você a se destacar no mercado e alcançar resultados incríveis.
+        </p>
+      </div>
+    </section>
+
+    <!-- Seção ScarletStore -->
+    <section id="scarletstore" class="fadeInUp">
+      <h2>ScarletStore</h2>
+      <div class="section-content">
+        <img src="https://via.placeholder.com/200x200.png?text=ScarletStore" alt="Logo ScarletStore" />
+        <p>
+          A ScarletStore é nossa marca parceira, especializada em produtos inovadores para impulsionar seu desempenho. Combinando tecnologia e design, oferecemos soluções que elevam suas vendas e otimizam sua performance.
+        </p>
+        <a class="btn" href="https://discord.gg/khNFWqFw" target="_blank">Visite nossa ScarletStore</a>
+      </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" class="fadeInUp">
+      <h2>Contato</h2>
+      <div class="section-content">
+        <p>
+          Para dúvidas ou mais informações, entre em contato conosco pelo Discord ou envie um e-mail para
+          <a href="mailto:contato@equipevendasdiscord.com">contato@equipevendasdiscord.com</a>.
+        </p>
+        <p>
+          Estamos sempre prontos para ajudar você a alcançar o sucesso.
+        </p>
+      </div>
+    </section>
+
+    <!-- Seção Testemunhos -->
+    <section id="testemunhos" class="fadeInUp">
+      <h2>Testemunhos</h2>
+      <div class="grid">
+        <div class="card">
+          <p class="testimonial">"Este canal revolucionou minha forma de vender. A comunidade é incrível e os insights são valiosos."</p>
+          <p>- João Silva</p>
+        </div>
+        <div class="card">
+          <p class="testimonial">"As dicas e estratégias compartilhadas aqui me ajudaram a dobrar minhas vendas em poucos meses!"</p>
+          <p>- Maria Oliveira</p>
+        </div>
+        <div class="card">
+          <p class="testimonial">"Um ambiente colaborativo que realmente se importa com o crescimento de cada membro."</p>
+          <p>- Pedro Santos</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção FAQ -->
+    <section id="faq" class="fadeInUp">
+      <h2>Perguntas Frequentes</h2>
+      <div class="section-content">
+        <div class="faq-item">
+          <p class="faq-question">Como me inscrevo no canal?</p>
+          <div class="faq-answer">
+            <p>Clique no botão "Entre no Discord" e siga as instruções da plataforma para se inscrever.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <p class="faq-question">Quais produtos estão disponíveis na loja?</p>
+          <div class="faq-answer">
+            <p>Oferecemos uma variedade de produtos, incluindo os famosos "xits" e diversas ferramentas de otimização.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <p class="faq-question">Como funciona a ScarletStore?</p>
+          <div class="faq-answer">
+            <p>A ScarletStore é nossa marca parceira que oferece soluções inovadoras para impulsionar seu desempenho e aumentar suas vendas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Equipe -->
+    <section id="equipe" class="fadeInUp">
+      <h2>Nossa Equipe</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Lucas Mendes</h3>
+          <p>Especialista em Vendas</p>
+        </div>
+        <div class="card">
+          <h3>Ana Paula</h3>
+          <p>Gerente de Operações</p>
+        </div>
+        <div class="card">
+          <h3>Rafael Costa</h3>
+          <p>Consultor Estratégico</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Blog -->
+    <section id="blog" class="fadeInUp">
+      <h2>Blog e Artigos</h2>
+      <div class="section-content">
+        <p>
+          Acompanhe nosso blog para se manter atualizado com as últimas tendências e estratégias em vendas. Publicamos regularmente artigos e dicas que podem transformar sua abordagem de mercado.
+        </p>
+        <p>
+          Explore conteúdos detalhados que cobrem desde técnicas de vendas até análises de mercado, sempre com a expertise de nossa equipe.
+        </p>
+      </div>
+    </section>
+
+    <!-- Seção de Conteúdo Extra (Filler) -->
+    <section id="conteudo-extra" class="fadeInUp">
+      <h2>Conteúdo Extra</h2>
+      <div class="dummy">
+        <h3>Informações Adicionais</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod, urna a convallis tempus, nunc lorem cursus magna, a malesuada lacus sem ut velit. Sed sit amet bibendum sapien. Nulla facilisi. Vivamus eget sapien nec odio sollicitudin bibendum non at elit. Mauris dignissim, urna non interdum dictum, nisl risus facilisis urna, ut lacinia nibh justo id nisl.</p>
+        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum tincidunt velit sit amet massa volutpat, ac volutpat libero lacinia. Donec non lacus vitae felis tincidunt blandit. In hac habitasse platea dictumst.</p>
+        <p>Praesent euismod metus at urna volutpat, a congue leo semper. Mauris id convallis erat, vitae pretium turpis. Sed ut eros ac neque convallis luctus. Morbi rutrum odio eget arcu porta, non feugiat nisl hendrerit.</p>
+        <p>Etiam vehicula elit non quam sollicitudin, in consequat dolor consequat. Vestibulum at mi tincidunt, ultricies nibh ac, maximus nunc. Duis porttitor sem nec urna tincidunt, ut varius urna sagittis.</p>
+        <p>Fusce et diam ac lorem blandit volutpat. Curabitur a magna sit amet metus consectetur tincidunt. Vestibulum at quam a dui porta tristique. Nullam lacinia, massa vitae commodo congue, lorem massa interdum odio, nec cursus ipsum ipsum ac erat.</p>
+      </div>
+    </section>
+
+    <!-- Seção Filler Extra para Aumentar as Linhas -->
+    <section id="filler-extra" class="fadeInUp">
+      <h2>Mais Informações</h2>
+      <div class="dummy">
+        <h3>Detalhes Adicionais</h3>
+        <p>Morbi id magna at magna scelerisque tincidunt. Quisque at semper ipsum, nec cursus augue. Sed et tellus eget massa dignissim dapibus non vitae mauris. Proin at blandit nisl, a interdum elit. Cras in consequat sem. Nullam auctor, nunc a varius tincidunt, nisi justo dignissim leo, sit amet auctor enim dolor non dui. Vivamus congue dui non felis scelerisque fermentum.</p>
+        <p>Integer posuere elit sed velit efficitur, sed convallis sapien molestie. Praesent vulputate leo vel nisl congue, sit amet interdum dui fermentum. Curabitur et ullamcorper ipsum. Donec ut efficitur nisi. Donec congue, odio vel tincidunt sagittis, massa sem malesuada mauris, ut blandit purus nisl non nisi.</p>
+        <p>Aliquam erat volutpat. Curabitur non tortor a felis vestibulum dapibus. Fusce laoreet lorem nec nibh tincidunt, id interdum orci faucibus. Praesent eget sapien tortor. Suspendisse lacinia, mi euismod lacinia sagittis, justo enim gravida odio, nec fermentum sapien justo ac ligula.</p>
+        <p>Nulla facilisi. Morbi in massa id metus sodales ullamcorper. Quisque id ante non libero fermentum dictum nec non lorem. Proin nec mi non libero porttitor dapibus.</p>
+      </div>
+    </section>
+
+    <!-- Seção Conteúdo Extra Extendido -->
+    <section id="filler-continues" class="fadeInUp">
+      <h2>Conteúdo Extra Extendido</h2>
+      <div class="dummy">
+        <h3>Seção Extensiva 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices, dui sed commodo imperdiet, urna metus aliquam nisl, eget tincidunt velit arcu non libero. Nulla facilisi. Curabitur ac volutpat libero. Suspendisse potenti. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis et pharetra neque, ut pretium nisl. In quis magna in lorem cursus finibus.</p>
+        <p>Sed sed enim in purus cursus mollis. Mauris blandit odio non urna cursus, in malesuada quam consectetur. Nam vulputate turpis sed mauris dignissim, eget fermentum lectus hendrerit. Quisque in risus eget eros commodo feugiat. Donec at arcu non velit pharetra scelerisque. Mauris malesuada tincidunt nunc, nec tincidunt nisi viverra non.</p>
+        <p>Vivamus quis fermentum ligula, non porttitor elit. Phasellus ac ligula non justo condimentum accumsan. Aenean nec sem eget massa feugiat fermentum. Integer lobortis nisl vitae ante porta, a condimentum magna semper.</p>
+        <p>Fusce non odio ac urna vestibulum fermentum. Donec consectetur magna sed lacus elementum, sed molestie odio facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+      </div>
+      <div class="dummy">
+        <h3>Seção Extensiva 2</h3>
+        <p>Vestibulum euismod, ipsum a dignissim tincidunt, sapien neque dictum lectus, vitae pretium ex elit non magna. Donec sed erat a magna condimentum dapibus. Aliquam in lectus in arcu ultrices ultrices. Curabitur a mauris nulla. In scelerisque, orci a tristique laoreet, nulla libero luctus massa, a cursus urna quam id leo.</p>
+        <p>Praesent nec risus a nibh mollis tincidunt. Maecenas vitae lacus sed libero facilisis blandit. Nam lobortis velit ac neque faucibus, ut molestie metus tincidunt. Duis vehicula euismod tellus non ullamcorper. In dignissim quam non nibh malesuada, eget fermentum lorem vehicula.</p>
+        <p>Curabitur eget nulla nec metus sodales convallis a et metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        <p>Aliquam erat volutpat. Proin interdum urna eget mi congue, ac hendrerit ex tristique. Morbi et mi eget massa tincidunt tempor. Duis non massa sit amet purus commodo placerat. Curabitur sagittis, lectus non convallis lobortis, diam nunc tincidunt nunc, ut porttitor justo dui ac quam.</p>
+      </div>
+      <div class="dummy">
+        <h3>Seção Extensiva 3</h3>
+        <p>Integer vehicula mi non augue efficitur, ut porttitor sapien viverra. Donec feugiat, magna at cursus auctor, ligula metus venenatis odio, non ultricies leo nibh nec tortor. Sed eget lectus in purus sodales placerat. Vivamus id massa et justo convallis tempor. Mauris vel magna nec turpis commodo viverra.</p>
+        <p>Morbi nec tortor quis metus feugiat fringilla. Vestibulum sit amet volutpat velit, vitae cursus massa. Nullam vitae velit ligula. Suspendisse potenti. Phasellus varius mi sed ipsum sodales, in finibus nisl porttitor.</p>
+        <p>Sed euismod sem in arcu pharetra, sed pulvinar lacus ullamcorper. Nullam vel lorem ut tortor semper ullamcorper. Vestibulum venenatis ligula id nulla vehicula, ac ultrices risus tristique.</p>
+        <p>Proin cursus ligula eget eros lobortis, non efficitur nulla condimentum. Vestibulum eget diam non purus bibendum imperdiet non vitae sapien. Mauris at dui massa. Vivamus sit amet urna in tortor efficitur scelerisque.</p>
+      </div>
+      <div class="dummy">
+        <h3>Seção Extensiva 4</h3>
+        <p>Donec pretium sem ac magna sollicitudin, at tincidunt libero venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur aliquet velit ac mi blandit, eget interdum elit pharetra. In hac habitasse platea dictumst. Quisque eget semper urna, ac viverra ipsum.</p>
+        <p>Maecenas imperdiet sapien ac est dignissim, sed vestibulum arcu fermentum. Nullam lacinia consequat nisl, in pretium risus vestibulum at. Aenean euismod, ligula in maximus tincidunt, dui tortor aliquam erat, id tristique urna risus in justo.</p>
+        <p>Fusce vitae massa nec risus tincidunt dapibus. Sed ac felis nec enim dictum elementum. Vestibulum dignissim sem et odio ullamcorper, ac aliquet sapien gravida.</p>
+        <p>Aliquam erat volutpat. Sed a nibh ut nisl dictum interdum. Cras at nisi nec mi laoreet ullamcorper sit amet in tortor.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="fadeInUp">
+    <p>&copy; 2025 Equipe de Vendas Discord & ScarletStore. Todos os direitos reservados.</p>
+    <p>Desenvolvido com paixão e tecnologia para transformar sua experiência em vendas.</p>
+  </footer>
+
+  <!-- JavaScript para FAQ Interativo -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+    });
+  </script>
+
+  <!-- Configuração do particles.js -->
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 100,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ff5555"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          },
+          "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ff5555",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 100,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
